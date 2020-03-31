@@ -1,3 +1,7 @@
 [build]
   command = "ng build --prod --aot"
   publish = "dist/dixit-client"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
