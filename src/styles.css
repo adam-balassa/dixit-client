@@ -1,0 +1,174 @@
+* { outline: 0!important; }
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff'),
+    url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  transition: transform ease-in-out .12s;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.collapsed .material-icons{
+  transform: rotate(180deg);
+}
+
+*, body{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: inherit;
+}
+:root{
+  --blue: #004bd6;
+  --orange: #D68900;
+  --orange-dark: #cc7100;
+  --white: #f8fafb;
+  --red: rgb(190, 50, 50);
+  --shadow: 2px 2px 14px -3px #0007;
+  --header-height: 3rem;
+  --transition: all ease-in-out .2s;
+  --gray: #0004;
+  --light: #0002;
+  --dark: #1f1509;
+}
+body{
+  background-color: var(--white);
+  overflow-x: hidden;
+  font-weight: 300;
+}
+a, a:hover{
+  color: inherit;
+  text-decoration: none;
+}
+
+.button {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--orange-dark);
+  border: 0;
+  height: 3rem;
+  border-radius: 1.5rem;
+  width: fit-content;
+  height: fit-content;
+  padding: .5em 1.3em;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--white);
+  transition: var(--transition);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12);
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.button:hover {
+  background-color: var(--orange);
+}
+
+.button:hover i.fa {
+  animation: jump-right .4s ease;
+}
+
+.button:active {
+  background-color: var(--orange-dark);
+}
+
+.button:not(.absolute) i.fa{
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.button:not(.absolute) .material-icons {
+  margin-left: .6rem;
+}
+
+.button span {
+  white-space: nowrap;
+}
+
+label {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.input {
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px #0002 solid;
+  height: 3rem;
+  border-radius: 1.5rem;
+  padding: .5rem 1.5rem;
+  transition: var(--transition);
+}
+
+.input:hover {
+  border-color: #0004;
+}
+
+.input:focus, .input:active {
+  border-color: var(--orange);
+}
+
+.image-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-holder:not(.cover) > img, .image-holder:not(.cover) > svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.image-holder.cover > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@keyframes jump-right {
+  0% { transform: translateX(0) }
+  50% { transform: translateX(.5rem) }
+  100% { transform: translateX(0) }
+}
+
+@media screen and (max-width: 900px){
+  html{
+      font-size: 15px;
+  }
+}
+@media screen and (max-width: 500px){
+  html{
+      font-size: 13px;
+  }
+}

@@ -1,0 +1,5 @@
+.players {
+	border-radius: 1rem;
+	box-shadow: var(--shadow);
+	background-color: white;
+}

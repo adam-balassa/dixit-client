@@ -1,0 +1,5 @@
+main {
+	height: 100vh;
+	overflow: hidden;
+	background: -webkit-linear-gradient(70deg, #bf6a3b, #71293f);
+}

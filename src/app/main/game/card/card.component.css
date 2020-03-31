@@ -1,0 +1,33 @@
+.main {
+	box-shadow: var(--shadow);
+	border-radius: 1rem;
+	background-color: var(--dark);
+
+	width: fit-content;
+	overflow: hidden;
+	cursor: pointer;
+	transition: var(--transition);
+}
+
+.image {
+	max-height: 100%;
+	justify-content: center;
+	height: 16rem;
+	width: fit-content;
+}
+
+:host.big .image {
+	height: 18rem;
+}
+
+:host.active .main {
+	box-shadow: 0 0 20px -3px white;
+}
+
+:host.correct .main {
+	box-shadow: 0 0 20px -3px rgb(24, 209, 18);
+}
+
+.image > img {
+	width: unset;
+}

@@ -1,0 +1,11 @@
+<div class="row player p-3">
+  <div class="col-auto d-flex justify-content-center align-items-center">
+    <div class="icon" [ngStyle]="{'background-color': color}">
+      <span>{{ player.name.substr(0, 1) }}</span>
+    </div>
+  </div>
+  <div class="col d-flex flex-column">
+    <span class="name">{{ player.name }}</span>
+    <span class="score">{{ player.score }}pts</span>
+  </div>
+</div>

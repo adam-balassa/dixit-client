@@ -1,0 +1,5 @@
+.form {
+	background-color: white;
+	box-shadow: var(--shadow);
+	border-radius: 1rem; /*ae9-c42-64*/
+}

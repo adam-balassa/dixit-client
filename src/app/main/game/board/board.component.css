@@ -1,0 +1,43 @@
+.main {
+	display: flex;
+	flex-direction: column;	
+}
+
+.board {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+.cards {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	transform: translateY(10rem);
+	transition: var(--transition);
+}
+
+.cards:hover {
+	transform: none;
+}
+
+.cards aside {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.dixit-card {
+	transition: var(--transition);
+	position: relative;
+}
+
+.dixit-card:hover {
+	transform: scale(1.7);
+	z-index: 5;
+}
+
+.cards .dixit-card:hover {
+	transform: translateY(-5rem) scale(1.5);
+}

@@ -1,0 +1,14 @@
+.message-holder {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 3rem;
+	font-weight: 700;
+	width: 100vw;
+	color: var(--white);
+	text-shadow: 4px 4px 10px var(--gray);
+	height: 100vh;
+	top: 0;
+	left: 0;
+}

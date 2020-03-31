@@ -1,0 +1,25 @@
+.player {
+	box-shadow: var(--shadow);
+	border-radius: 1rem;
+	background-color: var(--white);
+}
+
+.icon {
+	line-height: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	height: 3rem;
+	width: 3rem;
+	font-size: 1.8rem;
+	font-weight: 600;
+	color: white;
+	background-color: cornflowerblue;
+	text-transform: uppercase;
+}
+
+.name {
+	font-size: 1.2rem;
+	font-weight: 500;
+}

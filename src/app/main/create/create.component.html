@@ -1,0 +1,25 @@
+<div class="container h-100 d-flex align-items-center">
+  <div class="row justify-content-center w-100">
+    <div class="col-8">
+      <form class="form container py-5" #form="ngForm">
+        <div class="row justify-content-center mb-3">
+          <div class="col-md-10">
+            <label>Name the room</label>
+            <input [(ngModel)]="roomName" type="text" class="input" name="roomName">
+          </div>
+        </div>
+        <div class="row justify-content-center mb-3">
+          <div class="col-md-10">
+            <label>Choose a nickname</label>
+            <input [(ngModel)]="nickName" type="text" class="input" name="nickName">
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <button class="button w-100" (click)="create()">Create</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
