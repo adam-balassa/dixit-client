@@ -11,7 +11,7 @@ import { GameService } from './services/game.service';
 @Injectable({
   providedIn: 'root'
 })
-class CanBoardActivate implements CanActivate {
+export class CanBoardActivate implements CanActivate {
   constructor(private game: GameService, private router: Router) {
 
   }
@@ -23,8 +23,7 @@ class CanBoardActivate implements CanActivate {
 }
 
 
-const routes: Routes = [
-
+export const routes: Routes = [
   { path: '', component: MainComponent, pathMatch: 'prefix', children: [
     { path: '', component: IndexComponent, pathMatch: 'full' },
     { path: 'join', component: JoinComponent },
