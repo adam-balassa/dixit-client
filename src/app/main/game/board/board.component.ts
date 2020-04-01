@@ -94,14 +94,14 @@ export class BoardComponent implements OnInit, OnDestroy {
         this.server.addRoomTitle(this.gameService.game.value.id, this.title, card.id)
         .then(() => { this.title = ''; });
         const game = this.gameService.game.value;
-        game.members[this.myIndex].choice = card;
+        this.shuffledChoices.push({id: card.id});
         this.setMyHand(game);
       }
     }
     else {
       this.server.addChoice(this.gameService.game.value.id, card.id, this.gameService.playerId);
       const game = this.gameService.game.value;
-      game.members[this.myIndex].choice = card;
+      this.shuffledChoices.push({id: card.id});
       this.setMyHand(game);
     }
   }
