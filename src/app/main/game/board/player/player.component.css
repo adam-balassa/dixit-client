@@ -4,6 +4,10 @@
 	background-color: var(--white);
 }
 
+.active.player {
+	box-shadow: 0 0 20px -3px white;
+}
+
 .icon {
 	line-height: 0;
 	display: flex;
@@ -22,4 +26,19 @@
 .name {
 	font-size: 1.2rem;
 	font-weight: 500;
+}
+
+.collapsable {
+	transition: var(--transition);
+	overflow: hidden;
+	height: 0;
+}
+
+.player:hover .collapsable {
+	height: 4rem;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
 }

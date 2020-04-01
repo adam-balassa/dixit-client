@@ -8,8 +8,15 @@ import { Player } from 'src/app/model/game.model';
 })
 export class PlayerComponent implements OnInit {
 
+  @Input() players: Player[];
+  @Input() myRound: boolean;
+  @Input() endOfRound: boolean;
   @Input() player: Player;
   color: string;
+
+  get vote(): string {
+    return this.players.find(p => p.choice.id === this.player.vote.id).name;
+  }
 
   constructor() {
     this.color = this.generateRandomColor();

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-auto container-fluid" *ngFor="let player of (game | async).members; let i = index">
           <div>
-            <app-player [ngClass]="{'active': i === round}" [player]="player"></app-player>
+            <app-player [myRound]="i === round" [endOfRound]="status === 'end of round'" [players]="gameService.game.value.players" [player]="player"></app-player>
           </div>
         </div>
       </div>
