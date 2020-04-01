@@ -2,8 +2,8 @@
   <section class="players p-4">
     <div class="container">
       <div class="row">
-        <div [ngClass]="{ 'col-auto': i !== myIndex, 'container-fluid': i !== myIndex }" *ngFor="let player of (game | async).members; let i = index">
-          <div *ngIf="i !== myIndex">
+        <div class="col-auto container-fluid" *ngFor="let player of (game | async).members; let i = index">
+          <div>
             <app-player [ngClass]="{'active': i === round}" [player]="player"></app-player>
           </div>
         </div>
@@ -13,7 +13,7 @@
   <section class="board">
     <div class="container-fluid">
       <div class="row w-100 justify-content-center h-100 align-items-center">
-        <div class="col-auto dixit-card" *ngFor="let choice of choices">
+        <div class="col-auto dixit-card" *ngFor="let choice of shuffledChoices">
           <app-card class="big" 
           [ngClass]="{'active': (game | async).members[myIndex]?.vote?.id === choice.id, 'correct': choice.id === correctAnswer }" 
           [back]="status === 'choices'" 

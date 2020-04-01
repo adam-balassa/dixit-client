@@ -26,6 +26,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   myIndex: number;
   title: string;
   correctAnswer: number = -1;
+  shuffledChoices: Card[];
 
   constructor(public gameService: GameService, private server: ServerService) { }
 
@@ -58,12 +59,14 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   startVotes(game: Game) {
     if (this.status === 'votes') return;
+    this.shuffledChoices = this.shuffle(this.choices);
     this.status = 'votes';
 
     this.message = 'Make your vote';
   }
 
   chooseTitle(game: Game) {
+    this.shuffledChoices = this.choices;
     if (this.status === 'title') return;
     this.correctAnswer = -1;
     this.status = 'title';
@@ -74,6 +77,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   startChoices(game: Game) {
+    this.shuffledChoices = this.shuffle(this.choices);
     if (this.status === 'choices') return;
     this.correctAnswer = -1;
     this.status = 'choices';
@@ -133,4 +137,11 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
 }
