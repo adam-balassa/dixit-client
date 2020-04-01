@@ -47,8 +47,10 @@ export class GameService {
     const game = await this.server.getGame(this.game.value.id);
     const old = this.game.value;
     let changeDetected = false;
+    if (game.members.length !== old.members.length) changeDetected = true;
     if (game.round.number !== old.round.number) changeDetected = true;
     if (game.round.title !== old.round.title) changeDetected = true;
+    if (game.members[0].hand.length !== old.members[0].hand.length) changeDetected = true;
     game.members.forEach((m, i) => {
       if (m.choice && !old.members[i].choice || m.vote && !old.members[i].vote)
         changeDetected = true;
