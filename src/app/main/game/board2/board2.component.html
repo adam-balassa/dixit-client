@@ -1,0 +1,15 @@
+<div class="main-container">
+  <div class="players mt-5">
+    <app-board-players></app-board-players>
+  </div>
+  <div class="board my-5">
+    <div class="title d-flex justify-content-center" *ngIf="state === 'choices'">
+      <h2>{{ title }}</h2>
+    </div>
+    <app-board-cards (vote)="vote($event)" [(title)]="title"></app-board-cards>
+  </div>
+  <div class="my-cards">
+    <app-my-cards (choose)="choose($event)"></app-my-cards>
+  </div>
+</div>
+<app-message [(message)]="message"></app-message>

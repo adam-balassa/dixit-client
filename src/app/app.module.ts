@@ -17,6 +17,11 @@ import { PlayersComponent } from './main/game/start/players/players.component';
 import { CardComponent } from './main/game/card/card.component';
 import { PlayerComponent } from './main/game/board/player/player.component';
 import { MessageComponent } from './components/message/message.component';
+import { Board2Component } from './main/game/board2/board2.component';
+import { MyCardsComponent } from './main/game/board2/my-cards/my-cards.component';
+import { BoardCardsComponent } from './main/game/board2/board-cards/board-cards.component';
+import { BoardPlayersComponent } from './main/game/board2/board-players/board-players.component';
+import { BoardPlayerComponent } from './main/game/board2/board-players/board-player/board-player.component';
 
 
 @NgModule({
@@ -32,7 +37,12 @@ import { MessageComponent } from './components/message/message.component';
     PlayersComponent,
     CardComponent,
     PlayerComponent,
-    MessageComponent
+    MessageComponent,
+    Board2Component,
+    MyCardsComponent,
+    BoardCardsComponent,
+    BoardPlayersComponent,
+    BoardPlayerComponent
   ],
   imports: [
     BrowserModule,

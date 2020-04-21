@@ -1,0 +1,9 @@
+<div class="row justify-content-center">
+  <div class="col-auto mb-3 dixit-card" *ngFor="let card of cards; let i = index" 
+  [ngStyle]="{'transform': 
+    'rotate(' + (i + 0.5 - cards.length / 2) * 5 + 'deg)' +
+    'translateY(' + (i + 0.5 - cards.length / 2) * (i + 0.5- cards.length / 2) * 10 + 'px)'}">
+    <app-card [card]="card" (click)="onCardClick(card)"></app-card>
+  </div>
+</div>
+<app-message [(message)]="message"></app-message>

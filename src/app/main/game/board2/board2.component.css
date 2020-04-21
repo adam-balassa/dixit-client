@@ -1,0 +1,13 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.board {
+    flex: 1;
+}
+
+.title  {
+    color: var(--white);
+    margin-bottom: 1rem;
+}

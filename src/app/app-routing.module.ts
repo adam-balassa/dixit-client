@@ -8,6 +8,7 @@ import { GameComponent } from './main/game/game.component';
 import { StartComponent } from './main/game/start/start.component';
 import { BoardComponent } from './main/game/board/board.component';
 import { GameService } from './services/game.service';
+import { Board2Component } from './main/game/board2/board2.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +31,7 @@ export const routes: Routes = [
     { path: 'create', component: CreateComponent },
     { path: 'game', component: GameComponent, canActivate: [CanBoardActivate], children: [
       { path: 'start', component: StartComponent },
-      { path: 'board', component: BoardComponent }
+      { path: 'board', component: Board2Component }
     ]},
     { path: '**', redirectTo: '/join' }
   ]}

@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "dixit-client"
+  "defaultProject": "dixit-client",
+  "cli": {
+    "analytics": "459f5a89-0e0d-4ad7-b546-2166ea2527a1"
+  }
 }

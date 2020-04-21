@@ -1,0 +1,21 @@
+<div class="player p-3" [ngClass]="{'active': myRound}">
+  <div class="row">
+    <div class="col-auto d-flex justify-content-center align-items-center">
+      <div class="icon" [ngStyle]="{'background-color': color}">
+        <span>{{ player.name.substr(0, 1) }}</span>
+      </div>
+    </div>
+    <div class="col d-flex flex-column">
+      <div class="d-flex align-items-center">
+        <span class="name">{{ player.name }}</span>
+        <span class="name ml-1">{{ player.id === game.playerId ? '(You)' : '' }}</span>
+        <span class="check" *ngIf="state === 'choices' && player.choice || state === 'votes' && player.vote"><i class="fa fa-check"></i></span>
+      </div>
+      <div class="d-flex">
+        <span class="score">{{ player.score }}</span>
+        <span class="score ml-2" *ngIf="state === 'end-of-round'"> + {{ score }}</span>
+        <span class="score">pts</span>
+      </div>
+    </div>
+  </div>
+</div>

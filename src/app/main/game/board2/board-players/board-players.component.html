@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-auto" *ngFor="let player of players">
+      <div class="player mb-3">
+        <app-board-player [player]="player">
+
+        </app-board-player>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.dixit-card {
+    transition: var(--transition);
+    position: relative;
+}
+
+.dixit-card:hover {
+    transform: scale(1.5) translateY(-3rem)!important;
+    z-index: 2;
+}
+
+@media screen and (max-width: 800px) {
+    .dixit-card {
+        transform: none!important;
+    }
+}

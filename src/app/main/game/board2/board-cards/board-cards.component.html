@@ -1,0 +1,31 @@
+<div class="d-flex h-100 flex-column">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-auto" *ngFor="let player of players" (click)="onCardClick(player.choice)">
+      <div class="player mb-2" *ngIf="state==='end-of-round'">
+        <span>{{ player.name }}</span>
+      </div>
+      <div class="app-card">
+        <app-card class="big" [card]="player.choice" [back]="state === 'choices'"
+        [ngClass]="{'active': playersVote === player.choice?.id, 'correct': correctAnswer === player.choice?.id && state === 'end-of-round'}"></app-card>
+        <div class="players">
+          <div class="vote" *ngFor="let p of votesForPlayer[player.id]" [ngStyle]="{'background-color': game.colors[p.id]}">
+            <span>{{ p.name.charAt(0) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center h-100" *ngIf="state === 'choosing-title' && game.isMyRound()">
+    <form class="col-md-6 d-flex flex-column align-items-center" ngForm>
+      <div class="form-group">
+        <label class="title" for="title">Choose a title</label>
+        <input type="text" class="input" placeholder="Title..." id="title" name="title" [ngModel]="title" (ngModelChange)="titleChange.next($event)">
+      </div>
+    </form>
+  </div>
+  <div class="row justify-content-center align-items-center mt-3" *ngIf="state === 'end-of-round' && game.isMyRound()">
+    <form class="col-md-6 d-flex flex-column align-items-center" ngForm>
+      <button class="button" (click)="nextRound()">Next round</button>
+    </form>
+  </div>
+</div>

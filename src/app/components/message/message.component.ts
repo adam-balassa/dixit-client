@@ -28,7 +28,7 @@ export class MessageComponent implements OnInit {
         console.log('disappear');
         this.message = undefined;
         this.messageChange.next(undefined);
-      }, 1200);
+      }, 2400);
   }
   @Output() messageChange = new EventEmitter<string>(undefined);
   constructor() { }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Player } from 'src/app/model/game.model';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-player',
@@ -18,11 +19,13 @@ export class PlayerComponent implements OnInit {
     return this.players.find(p => p.choice.id === this.player.vote.id).name;
   }
 
-  constructor() {
+  constructor(public game: GameService) {
     this.color = this.generateRandomColor();
   }
 
   ngOnInit() {
+    console.log(this.player.id, this.game.playerId);
+    
   }
 
   generateRandomColor() {

@@ -20,7 +20,6 @@ export class BoardComponent implements OnInit, OnDestroy {
   status: Status;
 
   choices: Card[];
-  votes: Player[];
   myCards: Card[];
   round: number;
   myIndex: number;

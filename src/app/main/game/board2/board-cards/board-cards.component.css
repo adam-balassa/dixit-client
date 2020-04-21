@@ -1,0 +1,51 @@
+.app-card {
+    position: relative;
+    transition: var(--transition);
+    position: relative;
+}
+
+.app-card:hover {
+    transform: scale(1.5);
+    z-index: 2;
+}
+
+.player {
+    text-shadow: 2px 2px 5px #0004;
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.players {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+    
+.players .vote {
+    line-height: 0;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: .6rem;
+}
+
+.title {
+    color: var(--white);       
+}

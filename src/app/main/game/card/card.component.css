@@ -31,3 +31,13 @@
 .image > img {
 	width: unset;
 }
+
+@media screen and (max-width: 1500px) {
+	.image {
+		height: 13rem;
+	}
+
+	:host.big .image {
+		height: 15rem;
+	}
+}
