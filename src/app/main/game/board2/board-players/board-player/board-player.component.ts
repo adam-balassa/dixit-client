@@ -41,9 +41,9 @@ export class BoardPlayerComponent implements OnInit, OnDestroy {
         const correctId = game.members[currentPlayerIndex].choice.id;
         if (game.members.every(player => player.vote.id === correctId)) this.score = 2;
         else if (game.members.every(
-          player => player.vote.id !== this.player.choice.id || player.id === game.members[currentPlayerIndex].id)) this.score = 2;
+          player => player.vote.id !== correctId || player.id === game.members[currentPlayerIndex].id)) this.score = 2;
         else {
-          if (this.player.vote.id === correctId) this.score = 1;
+          if (this.player.vote.id === correctId) this.score = 2;
           game.members.forEach(player => {
             if (player.vote.id === this.player.choice.id) this.score++;
           });
