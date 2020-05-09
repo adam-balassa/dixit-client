@@ -19,10 +19,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: setup npm
+      run: npm i
+    # Runs a set of commands using the runners shell
+    - name: Build project
+      run: ng build
     # Runs a single command using the runners shell
     - name: TS lint test
       run: ng lint
 
-    # Runs a set of commands using the runners shell
-    - name: Check if project runs without compile error
-      run: ng build
