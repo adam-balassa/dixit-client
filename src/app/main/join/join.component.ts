@@ -28,10 +28,10 @@ export class JoinComponent implements OnInit {
     }
     else
       this.server.joinRoom(this.roomId, this.nickName)
-      .then(game => {
-        const player = game.members.find(member => member.name === this.nickName);
-        this.game.playerId = player.id;
-        this.game.start(game);
+      .then(newGame => {
+        const p = game.members.find(member => member.name === this.nickName);
+        this.game.playerId = p.id;
+        this.game.start(newGame);
         this.router.navigateByUrl('/game/start');
       });
   }

@@ -51,7 +51,7 @@ export class GameService {
     const members = game.members;
     if (members.every(m => !m.choice)) return 'choosing-title';
     if (members.every(m => !!m.vote)) return 'end-of-round';
-    if (members.every(m => !!m.choice)) return 'votes'; 
+    if (members.every(m => !!m.choice)) return 'votes';
     return 'choices';
   }
 

@@ -25,7 +25,6 @@ export class PlayerComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.player.id, this.game.playerId);
-    
   }
 
   generateRandomColor() {
