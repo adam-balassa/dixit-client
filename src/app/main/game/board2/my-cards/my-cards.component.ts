@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/cor
 import { Subscription } from 'rxjs';
 import { State, GameService } from 'src/app/services/game.service';
 import { Game, Card } from 'src/app/model/game.model';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-my-cards',

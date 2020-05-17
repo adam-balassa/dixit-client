@@ -1,0 +1,9 @@
+.url-holder {
+	border-radius: 1rem;
+	box-shadow: var(--shadow);
+	background-color: white;
+}
+
+.label {
+    font-weight: 600;
+}
