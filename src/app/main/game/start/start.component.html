@@ -1,6 +1,6 @@
 <div class="container h-100 d-flex align-items-center flex-column justify-content-center">
   <h1>{{ (game | async).name }}</h1>
-  <div class="url-holder px-4 py-3 d-flex flex-column">
+  <div class="url-holder px-4 py-3 d-flex flex-column mt-4">
     <span class="label">Join Url</span>
     <span>https://dixit-app.netlify.app/join?roomId={{ (game | async).id }}</span>
   </div>

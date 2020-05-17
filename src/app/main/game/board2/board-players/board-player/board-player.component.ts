@@ -30,7 +30,8 @@ export class BoardPlayerComponent implements OnInit, OnDestroy {
     this.state = this.game.getState();
     const round = game.round.number;
     const currentPlayerIndex = round % game.members.length;
-    this.myRound = game.members[currentPlayerIndex].id === this.player.id;
+    const playerOnRound = game.members[currentPlayerIndex].id;
+    this.myRound = playerOnRound === this.player.id;
     if (this.state === 'end-of-round') {
       if (this.myRound) {
         if (game.members.every(player => player.vote.id === this.player.choice.id || player.id === this.player.id)) this.score = 0;
@@ -39,9 +40,8 @@ export class BoardPlayerComponent implements OnInit, OnDestroy {
       }
       else {
         const correctId = game.members[currentPlayerIndex].choice.id;
-        if (game.members.every(player => player.vote.id === correctId)) this.score = 2;
-        else if (game.members.every(
-          player => player.vote.id !== correctId || player.id === game.members[currentPlayerIndex].id)) this.score = 2;
+        if (game.members.every(player => player.vote.id === correctId || player.id === playerOnRound)) this.score = 2;
+        else if (game.members.every( player => player.vote.id !== correctId || player.id === playerOnRound )) this.score = 2;
         else {
           if (this.player.vote.id === correctId) this.score = 3;
           game.members.forEach(player => {
