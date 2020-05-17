@@ -5,6 +5,9 @@ import { Observable, Subscription } from 'rxjs';
 import { Game } from 'src/app/model/game.model';
 import { Router } from '@angular/router';
 
+/**
+ * Represents the lobby before the game starts
+ */
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
@@ -25,10 +28,16 @@ export class StartComponent implements OnInit, OnDestroy {
     console.log(this.game);
   }
 
+  /**
+   * Navigates to game when the admin has started the game
+   */
   gameStarted() {
     this.router.navigateByUrl('/game/board');
   }
 
+  /**
+   * A function that only admins can call, starts the game
+   */
   async startGame() {
     await this.server.startGame(this.gameService.game.value.id);
     this.gameStarted();

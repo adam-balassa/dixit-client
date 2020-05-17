@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Card } from 'src/app/model/game.model';
-
+/**
+ * Represents a card
+ * Manages source conversion to image
+ */
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -9,7 +12,10 @@ import { Card } from 'src/app/model/game.model';
 export class CardComponent implements OnInit {
 
   src: string;
+  // The card that the component represents
   @Input() card: Card;
+
+  // Input flag determining which side of the card shall be displayed
   back: boolean = false;
   @Input('back') set _back(value: boolean) {
     this.back = value;

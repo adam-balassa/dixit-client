@@ -3,6 +3,10 @@ import { Response, Success, Error } from './response.model';
 
 const API = 'https://dixitserver.herokuapp.com';
 
+/**
+ * A helper class to provide a comfortable interface for accessing the API
+ * Promise driven.
+ */
 export class Request<ResultType = any> {
   private url: string;
   private method: string;

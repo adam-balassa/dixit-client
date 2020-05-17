@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, transition, style, animate, AnimationTriggerMetadata } from '@angular/animations';
 
-
+/**
+ * A message that fades after a short time passes
+ */
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
@@ -21,6 +23,8 @@ import { trigger, transition, style, animate, AnimationTriggerMetadata } from '@
 })
 export class MessageComponent implements OnInit {
   message: string | undefined;
+
+  // the message that is to be displayed (two-way bound)
   @Input('message') set setMessage(value: string | undefined) {
     this.message = value;
     if (value !== undefined)

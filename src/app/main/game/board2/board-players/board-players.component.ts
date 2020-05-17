@@ -3,6 +3,9 @@ import { GameService } from 'src/app/services/game.service';
 import { Player, Member, Game } from 'src/app/model/game.model';
 import { Subscription } from 'rxjs';
 
+/**
+ * Represents the players on the top of the screen
+ */
 @Component({
   selector: 'app-board-players',
   templateUrl: './board-players.component.html',
@@ -21,6 +24,10 @@ export class BoardPlayersComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Displays players on the screen
+   * @param game the game's new state
+   */
   init(game: Game) {
     game.members.forEach(member => {
       const player = this.players.find(p => p.id === member.id);

@@ -24,6 +24,9 @@ export class JoinComponent implements OnInit {
     this.roomId = this.url.snapshot.queryParams.roomId || '';
   }
 
+  /**
+   * Forwards joining request to server and navigates forward
+   */
   async join() {
     try {
       const game: Game = await this.server.getGame(this.roomId);

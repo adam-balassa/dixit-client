@@ -18,6 +18,10 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Forwards request to server
+   * Navigates to lobby after successful requests
+   */
   async create() {
     try {
       let game = await this.server.createRoom(this.roomName);

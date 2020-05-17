@@ -3,6 +3,9 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Request } from 'src/app/model/request.model';
 import { Game } from '../model/game.model';
 
+/**
+ * Server API endpoints
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -15,11 +18,7 @@ export class ServerService {
   }
 
   joinRoom(roomId: string, name: string): Promise<Game> {
-    const req =  new Request<Game>(this.http)
-    const p = req.post(`/rooms/${roomId}/members`, { name });
-    p.catch(err => console.log(err));
-    p.then(err => console.log(err));
-    return p;
+    return new Request<Game>(this.http).post(`/rooms/${roomId}/members`, { name });
   }
 
   startGame(roomId: string): Promise<Game> {

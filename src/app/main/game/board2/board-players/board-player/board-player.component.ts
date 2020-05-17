@@ -3,6 +3,9 @@ import { Player, Game } from 'src/app/model/game.model';
 import { GameService, State } from 'src/app/services/game.service';
 import { Subscription } from 'rxjs';
 
+/**
+ * A player on the top of the screen
+ */
 @Component({
   selector: 'app-board-player',
   templateUrl: './board-player.component.html',
@@ -11,7 +14,9 @@ import { Subscription } from 'rxjs';
 export class BoardPlayerComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
+  // the player thet the component represents
   @Input() player: Player;
+  // the player's avatars color
   color: string;
   myRound: boolean;
   state: State;
@@ -26,6 +31,10 @@ export class BoardPlayerComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Calculates the players score at the end of the round
+   * @param game the games new status
+   */
   init(game: Game) {
     this.state = this.game.getState();
     const round = game.round.number;

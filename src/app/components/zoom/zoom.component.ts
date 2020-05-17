@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 const FONT_SIZE_KEY = 'default-font-size';
 
+/**
+ * Enables zooming in the game for better user experience
+ */
 @Component({
   selector: 'app-zoom',
   templateUrl: './zoom.component.html',

@@ -5,6 +5,9 @@ import { Game, Card } from 'src/app/model/game.model';
 import { ServerService } from 'src/app/services/server.service';
 import { NotifierService } from 'angular-notifier';
 
+/**
+ * A component that represents the game's board
+ */
 @Component({
   selector: 'app-board2',
   templateUrl: './board2.component.html',
@@ -23,6 +26,11 @@ export class Board2Component implements OnInit, OnDestroy {
     this.subscription = this.game.game.subscribe(game => this.init(game));
   }
 
+  /**
+   * Called each time the game's state has refreshed
+   * Shows propriate messages if the game enters a new section
+   * @param game the games new state
+   */
   init(game: Game): void {
     const newState = this.game.getState();
     if (newState === 'choices' && this.state !== 'choices')
@@ -35,18 +43,31 @@ export class Board2Component implements OnInit, OnDestroy {
     this.title = game.round.title;
   }
 
+  /**
+   * Displays a message on the screen
+   * @param msg the message that is to be displayed
+   */
   showMessage(msg: string) {
     this.message = msg;
   }
 
+  /**
+   * Forwards vote request to server
+   * @param card the card that the player has voted for
+   */
   vote(card: Card) {
     this.server.addVote(this.game.game.value.id, card.id, this.game.playerId)
     .then(() => { this.refresh(card); })
     .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your vote'); });
   }
 
+  /**
+   * Forwards choice request to server
+   * @param card the card thet has been chosen
+   */
   choose(card: Card) {
     if (this.state === 'choosing-title' && this.game.isMyRound()) {
+      // The current player is on round and has chosen a title
       if (!this.title) {
         this.showMessage('You must choose a title first');
         return;
@@ -56,11 +77,16 @@ export class Board2Component implements OnInit, OnDestroy {
       .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your choice'); });
     }
     else
+      // The current player was not round
       this.server.addChoice(this.game.game.value.id, card.id, this.game.playerId)
       .then(() => { this.refresh(card); })
       .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your choice'); });
   }
 
+  /**
+   * Refreshes the game's state after a request
+   * @param card the card that was chosen
+   */
   refresh(card: Card) {
     const game = this.game.game.value;
     const player = game.members.find(m => m.id === this.game.playerId);
