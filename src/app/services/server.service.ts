@@ -15,7 +15,11 @@ export class ServerService {
   }
 
   joinRoom(roomId: string, name: string): Promise<Game> {
-    return new Request<Game>(this.http).post(`/rooms/${roomId}/members`, { name });
+    const req =  new Request<Game>(this.http)
+    const p = req.post(`/rooms/${roomId}/members`, { name });
+    p.catch(err => console.log(err));
+    p.then(err => console.log(err));
+    return p;
   }
 
   startGame(roomId: string): Promise<Game> {
