@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from 'src/app/services/server.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { GameService } from 'src/app/services/game.service';
 import { Game, Player } from 'src/app/model/game.model';
 
@@ -13,9 +13,10 @@ export class JoinComponent implements OnInit {
 
   roomId: string;
   nickName: string;
-  constructor(private server: ServerService, private router: Router, private game: GameService) { }
+  constructor(private server: ServerService, private router: Router, private game: GameService, private url: ActivatedRoute) { }
 
   ngOnInit() {
+    this.roomId = this.url.snapshot.queryParams.roomId || '';
   }
 
   async join() {

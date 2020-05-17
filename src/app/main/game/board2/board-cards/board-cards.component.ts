@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { GameService, State } from 'src/app/services/game.service';
 import { Game, Card, Member, Player } from 'src/app/model/game.model';
 import { ServerService } from 'src/app/services/server.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-board-cards',
@@ -21,9 +22,9 @@ export class BoardCardsComponent implements OnInit, OnDestroy {
 
   @Input() title: string;
   @Output() titleChange = new EventEmitter<string>();
-
   @Output() vote = new EventEmitter<Card>();
-  constructor(public game: GameService, private server: ServerService) { }
+
+  constructor(public game: GameService, private server: ServerService, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.subscription = this.game.game.subscribe(game => this.init(game));
@@ -34,6 +35,19 @@ export class BoardCardsComponent implements OnInit, OnDestroy {
     const prevState = this.state;
     this.state = this.game.getState();
 
+    this.displayCards(game, prevState);
+    this.updateSelectedCards(game);
+    this.displayVotes(game);
+  }
+
+  updateSelectedCards(game: Game) {
+    const player = game.members.find(member => member.id === this.game.playerId);
+    this.playersVote = player.vote ? player.vote.id : null;
+    const currentPlayer = game.members[game.round.number % game.members.length];
+    this.correctAnswer = currentPlayer.choice ? currentPlayer.choice.id : null;
+  }
+
+  displayCards(game: Game, prevState: State) {
     const filteredPlayers = game.members.filter(m => m.choice);
 
     if ((prevState === 'choices' || !prevState) && this.state === 'votes') {
@@ -44,12 +58,9 @@ export class BoardCardsComponent implements OnInit, OnDestroy {
       if (filteredPlayers[e])
         this.players.push(filteredPlayers[e]);
     });
+  }
 
-    const player = game.members.find(member => member.id === this.game.playerId);
-    this.playersVote = player.vote ? player.vote.id : null;
-    const currentPlayer = game.members[game.round.number % game.members.length];
-    this.correctAnswer = currentPlayer.choice ? currentPlayer.choice.id : null;
-
+  displayVotes(game: Game) {
     this.players.forEach(p => this.votesForPlayer[p.id] = []);
 
     if (this.state === 'end-of-round')
@@ -69,7 +80,8 @@ export class BoardCardsComponent implements OnInit, OnDestroy {
   }
 
   nextRound() {
-    this.server.startRound(this.game.game.value.id);
+    this.server.startRound(this.game.game.value.id)
+    .catch(err => { this.notifier.notify('error', err.message || 'Cannot start new round'); });
   }
 
   shuffle(a) {
@@ -78,6 +90,6 @@ export class BoardCardsComponent implements OnInit, OnDestroy {
         [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
-}
+  }
 
 }

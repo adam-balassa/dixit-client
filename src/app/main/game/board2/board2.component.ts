@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { State, GameService } from 'src/app/services/game.service';
 import { Game, Card } from 'src/app/model/game.model';
 import { ServerService } from 'src/app/services/server.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-board2',
@@ -16,7 +17,7 @@ export class Board2Component implements OnInit, OnDestroy {
   state: State;
 
   title: string;
-  constructor(public game: GameService, private server: ServerService) { }
+  constructor(public game: GameService, private server: ServerService, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.subscription = this.game.game.subscribe(game => this.init(game));
@@ -40,12 +41,8 @@ export class Board2Component implements OnInit, OnDestroy {
 
   vote(card: Card) {
     this.server.addVote(this.game.game.value.id, card.id, this.game.playerId)
-        .then(() => {
-          const game = this.game.game.value;
-          const player = game.members.find(m => m.id === this.game.playerId);
-          player.vote = card;
-          this.game.game.next(game);
-        });
+    .then(() => { this.refresh(card); })
+    .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your vote'); });
   }
 
   choose(card: Card) {
@@ -55,21 +52,20 @@ export class Board2Component implements OnInit, OnDestroy {
         return;
       }
       this.server.addRoomTitle(this.game.game.value.id, this.title, card.id)
-      .then(() => {
-        const game = this.game.game.value;
-        const player = game.members.find(m => m.id === this.game.playerId);
-        player.vote = card;
-        this.game.game.next(game);
-      });
+      .then(() => { this.refresh(card); })
+      .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your choice'); });
     }
     else
       this.server.addChoice(this.game.game.value.id, card.id, this.game.playerId)
-          .then(() => {
-            const game = this.game.game.value;
-            const player = game.members.find(m => m.id === this.game.playerId);
-            player.vote = card;
-            this.game.game.next(game);
-          });
+      .then(() => { this.refresh(card); })
+      .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your choice'); });
+  }
+
+  refresh(card: Card) {
+    const game = this.game.game.value;
+    const player = game.members.find(m => m.id === this.game.playerId);
+    player.vote = card;
+    this.game.game.next(game);
   }
 
   ngOnDestroy() {

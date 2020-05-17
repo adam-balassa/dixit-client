@@ -1,9 +1,13 @@
 <div class="container-fluid h-100 align-items-center">
-  <h2 class="mb-4">Players</h2>
-  <div class="row justify-content-center w-100 players p-4">
+  <div class="row justify-content-center w-100 players py-3">
     <div class="col-12">
       <div class="container">
-        <div class="row mb-3" *ngFor="let player of players">
+        <div class="row mb-2 title">
+          <div class="col-12">
+            <span>Players</span>
+          </div>
+        </div>
+        <div class="row my-2" *ngFor="let player of players">
           <div class="col-12">
             {{ player.name }}
           </div>

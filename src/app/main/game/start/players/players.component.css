@@ -3,3 +3,7 @@
 	box-shadow: var(--shadow);
 	background-color: white;
 }
+
+.title {
+	font-weight: 600;
+}

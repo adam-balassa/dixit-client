@@ -6,7 +6,6 @@ import { JoinComponent } from './main/join/join.component';
 import { CreateComponent } from './main/create/create.component';
 import { GameComponent } from './main/game/game.component';
 import { StartComponent } from './main/game/start/start.component';
-import { BoardComponent } from './main/game/board/board.component';
 import { GameService } from './services/game.service';
 import { Board2Component } from './main/game/board2/board2.component';
 @Injectable({
