@@ -21,6 +21,7 @@ import { MyCardsComponent } from './main/game/board2/my-cards/my-cards.component
 import { BoardCardsComponent } from './main/game/board2/board-cards/board-cards.component';
 import { BoardPlayersComponent } from './main/game/board2/board-players/board-players.component';
 import { BoardPlayerComponent } from './main/game/board2/board-players/board-player/board-player.component';
+import { ZoomComponent } from './components/zoom/zoom.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { BoardPlayerComponent } from './main/game/board2/board-players/board-pla
     MyCardsComponent,
     BoardCardsComponent,
     BoardPlayersComponent,
-    BoardPlayerComponent
+    BoardPlayerComponent,
+    ZoomComponent
   ],
   imports: [
     BrowserModule,

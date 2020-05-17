@@ -5,19 +5,31 @@ import { ServerService } from './server.service';
 
 export type State = 'choosing-title' | 'choices' | 'votes' | 'end-of-round';
 
+/**
+ * An Angular service to store the games state
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
+  // stores setInterval value so that it can be cancelled
   private infiniteLoop: number;
+  // a flag to store whether the current player is the one creating the game
   admin: boolean = false;
+  // the playerId of the logged in player
   playerId: string;
 
+  // maps players to colors
   colors: {[id: string]: string} = {};
+  // the state of the game
   game: BehaviorSubject<Game> = new BehaviorSubject<Game>(undefined);
 
   constructor(private server: ServerService) {}
 
+  /**
+   * Starts an infinite loop that pings the server
+   * @param game the inital state of the game
+   */
   start(game: Game) {
     this.game.next(game);
     this.infiniteLoop = window.setInterval(async () => {
@@ -29,6 +41,9 @@ export class GameService {
     clearInterval(this.infiniteLoop);
   }
 
+  /**
+   * Checks whether the current player is on the round
+   */
   isMyRound(): boolean {
     const game = this.game.value;
     const round = game.round.number;
@@ -37,6 +52,9 @@ export class GameService {
     return game.members[currentPlayerIndex].id === this.playerId;
   }
 
+  /**
+   * Maps the game state to an enumeration
+   */
   getState(): State {
     const game = this.game.value;
     const members = game.members;

@@ -3,6 +3,10 @@ import { Response, Success, Error } from './response.model';
 
 const API = 'https://dixitserver.herokuapp.com';
 
+/**
+ * A helper class to provide a comfortable interface for accessing the API
+ * Promise driven.
+ */
 export class Request<ResultType = any> {
   private url: string;
   private method: string;
@@ -18,14 +22,10 @@ export class Request<ResultType = any> {
     this.url = url;
     this.method = 'get';
     return new Promise((resolve, reject) => {
-      this.http.get<Response<ResultType>>(API + url, { headers: this.headers }).subscribe(
-        result => {
-          this.success(result, resolve, reject);
-        },
-        error => {
-          this.fail(error.error, reject);
-        },
-      );
+      this.http.get<Response<ResultType>>(API + url, { headers: this.headers })
+      .toPromise()
+      .then(res => {this.success(res, resolve, reject); })
+      .catch(err => { this.fail(err, reject); });
     });
   }
 
@@ -34,15 +34,10 @@ export class Request<ResultType = any> {
     this.method = 'post';
     this.data = data;
     return new Promise((resolve, reject) => {
-      this.http.post<Response<ResultType>>(API + url, data, { headers: this.headers }).subscribe(
-        result => {
-          this.success(result, resolve, reject);
-        },
-        error => {
-          console.log(error);
-          this.fail(error.error, reject);
-        },
-      );
+      this.http.post<Response<ResultType>>(API + url, data, { headers: this.headers })
+      .toPromise()
+      .then(res => {this.success(res, resolve, reject); })
+      .catch(err => { this.fail(err, reject); });
     });
   }
 
@@ -51,14 +46,10 @@ export class Request<ResultType = any> {
     this.method = 'patch';
     this.data = data;
     return new Promise((resolve, reject) => {
-      this.http.patch<Response<ResultType>>(API + url, data, { headers: this.headers }).subscribe(
-        result => {
-          this.success(result, resolve, reject);
-        },
-        error => {
-          this.fail(error.error, reject);
-        },
-      );
+      this.http.patch<Response<ResultType>>(API + url, data, { headers: this.headers })
+      .toPromise()
+      .then(res => {this.success(res, resolve, reject); })
+      .catch(err => { this.fail(err, reject); });
     });
   }
 
@@ -67,14 +58,10 @@ export class Request<ResultType = any> {
     this.method = 'put';
     this.data = data;
     return new Promise((resolve, reject) => {
-      this.http.put<Response<ResultType>>(API + url, data, { headers: this.headers }).subscribe(
-        result => {
-          this.success(result, resolve, reject);
-        },
-        error => {
-          this.fail(error.error, reject);
-        },
-      );
+      this.http.put<Response<ResultType>>(API + url, data, { headers: this.headers })
+      .toPromise()
+      .then(res => {this.success(res, resolve, reject); })
+      .catch(err => { this.fail(err, reject); });
     });
   }
 
@@ -82,14 +69,10 @@ export class Request<ResultType = any> {
     this.url = url;
     this.method = 'delete';
     return new Promise((resolve, reject) => {
-      this.http.delete<Response>(API + url, { headers: this.headers }).subscribe(
-        result => {
-          this.success(result, resolve, reject);
-        },
-        error => {
-          this.fail(error.error, reject);
-        },
-      );
+      this.http.delete<Response>(API + url, { headers: this.headers })
+      .toPromise()
+      .then(res => {this.success(res, resolve, reject); })
+      .catch(err => { this.fail(err, reject); });
     });
   }
 

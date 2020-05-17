@@ -3,6 +3,9 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Request } from 'src/app/model/request.model';
 import { Game } from '../model/game.model';
 
+/**
+ * Server API endpoints
+ */
 @Injectable({
   providedIn: 'root'
 })

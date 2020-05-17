@@ -3,6 +3,9 @@ import { Player, Game } from 'src/app/model/game.model';
 import { GameService, State } from 'src/app/services/game.service';
 import { Subscription } from 'rxjs';
 
+/**
+ * A player on the top of the screen
+ */
 @Component({
   selector: 'app-board-player',
   templateUrl: './board-player.component.html',
@@ -11,7 +14,9 @@ import { Subscription } from 'rxjs';
 export class BoardPlayerComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
+  // the player thet the component represents
   @Input() player: Player;
+  // the player's avatars color
   color: string;
   myRound: boolean;
   state: State;
@@ -26,11 +31,16 @@ export class BoardPlayerComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Calculates the players score at the end of the round
+   * @param game the games new status
+   */
   init(game: Game) {
     this.state = this.game.getState();
     const round = game.round.number;
     const currentPlayerIndex = round % game.members.length;
-    this.myRound = game.members[currentPlayerIndex].id === this.player.id;
+    const playerOnRound = game.members[currentPlayerIndex].id;
+    this.myRound = playerOnRound === this.player.id;
     if (this.state === 'end-of-round') {
       if (this.myRound) {
         if (game.members.every(player => player.vote.id === this.player.choice.id || player.id === this.player.id)) this.score = 0;
@@ -39,9 +49,8 @@ export class BoardPlayerComponent implements OnInit, OnDestroy {
       }
       else {
         const correctId = game.members[currentPlayerIndex].choice.id;
-        if (game.members.every(player => player.vote.id === correctId)) this.score = 2;
-        else if (game.members.every(
-          player => player.vote.id !== correctId || player.id === game.members[currentPlayerIndex].id)) this.score = 2;
+        if (game.members.every(player => player.vote.id === correctId || player.id === playerOnRound)) this.score = 2;
+        else if (game.members.every( player => player.vote.id !== correctId || player.id === playerOnRound )) this.score = 2;
         else {
           if (this.player.vote.id === correctId) this.score = 3;
           game.members.forEach(player => {

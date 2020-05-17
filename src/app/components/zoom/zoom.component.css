@@ -1,0 +1,45 @@
+:host {
+    position: fixed;
+    bottom: 10vh;
+    left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.zoom-container {
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.zoom-container span {
+    padding: 1rem;
+    line-height: 0;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.zoom-container span:hover {
+    background-color: #ddd;
+}
+
+.zoom-container span:active {
+    background-color: #ccc;
+}
+
+.zoom-container span:nth-child(1) {
+    border-bottom: 1px solid #ddd;
+}
+
+.message {
+    background-color: #0005;
+    color: white;
+    margin-left: 2rem;
+    padding: .8rem 1rem;
+    border-radius: .2rem;
+    line-height: 0;
+}
+
