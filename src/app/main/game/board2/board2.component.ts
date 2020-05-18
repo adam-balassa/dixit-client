@@ -57,7 +57,7 @@ export class Board2Component implements OnInit, OnDestroy {
    */
   vote(card: Card) {
     this.server.addVote(this.game.game.value.id, card.id, this.game.playerId)
-    .then(() => { this.refresh(card); })
+    .then(() => { this.refreshVote(card); })
     .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your vote'); });
   }
 
@@ -73,13 +73,13 @@ export class Board2Component implements OnInit, OnDestroy {
         return;
       }
       this.server.addRoomTitle(this.game.game.value.id, this.title, card.id)
-      .then(() => { this.refresh(card); })
+      .then(() => { this.refreshChoice(card); })
       .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your choice'); });
     }
     else
       // The current player was not round
       this.server.addChoice(this.game.game.value.id, card.id, this.game.playerId)
-      .then(() => { this.refresh(card); })
+      .then(() => { this.refreshChoice(card); })
       .catch(err => { this.notifier.notify('error', err.message || 'An error occured uploading your choice'); });
   }
 
@@ -87,10 +87,21 @@ export class Board2Component implements OnInit, OnDestroy {
    * Refreshes the game's state after a request
    * @param card the card that was chosen
    */
-  refresh(card: Card) {
+  refreshVote(card: Card) {
     const game = this.game.game.value;
     const player = game.members.find(m => m.id === this.game.playerId);
     player.vote = card;
+    this.game.game.next(game);
+  }
+
+  /**
+   * Refreshes the game's state after a request
+   * @param card the card that was chosen
+   */
+  refreshChoice(card: Card) {
+    const game = this.game.game.value;
+    const player = game.members.find(m => m.id === this.game.playerId);
+    player.choice = card;
     this.game.game.next(game);
   }
 
