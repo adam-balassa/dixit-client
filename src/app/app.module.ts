@@ -14,7 +14,7 @@ import { JoinComponent } from './main/join/join.component';
 import { GameComponent } from './main/game/game.component';
 import { StartComponent } from './main/game/start/start.component';
 import { PlayersComponent } from './main/game/start/players/players.component';
-import { CardComponent } from './main/game/card/card.component';
+import { CardComponent } from './components/card/card.component';
 import { MessageComponent } from './components/message/message.component';
 import { Board2Component } from './main/game/board2/board2.component';
 import { MyCardsComponent } from './main/game/board2/my-cards/my-cards.component';
