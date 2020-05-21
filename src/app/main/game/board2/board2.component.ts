@@ -34,7 +34,7 @@ export class Board2Component implements OnInit, OnDestroy {
   init(game: Game): void {
     const newState = this.game.getState();
     if (newState === 'choices' && this.state !== 'choices')
-      this.showMessage('The title is ' + game.round.title);
+      this.showMessage('The title is ' + game.round.title || this.title);
     else if (newState === 'votes' && this.state !== 'votes')
       this.showMessage('Vote for a card');
     else if (newState === 'choosing-title' && this.state !== 'choosing-title' && this.game.isMyRound())
@@ -102,6 +102,7 @@ export class Board2Component implements OnInit, OnDestroy {
     const game = this.game.game.value;
     const player = game.members.find(m => m.id === this.game.playerId);
     player.choice = card;
+    game.round.title = this.title;
     this.game.game.next(game);
   }
 
