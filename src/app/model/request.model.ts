@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Response, Success, Error } from './response.model';
 
-const API = 'https://dixitserver.herokuapp.com';
+const API = 'https://dixit-node.herokuapp.com';
 
 /**
  * A helper class to provide a comfortable interface for accessing the API
