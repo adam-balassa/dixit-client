@@ -38,7 +38,7 @@ export class JoinComponent implements OnInit {
       }
       else {
         const newGame = await this.server.joinRoom(this.roomId, this.nickName);
-        const p = game.members.find(member => member.name === this.nickName);
+        const p = newGame.members.find(member => member.name === this.nickName);
         this.game.playerId = p.id;
         this.game.start(newGame);
         this.router.navigateByUrl('/game/start');
